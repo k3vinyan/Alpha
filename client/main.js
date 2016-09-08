@@ -1,12 +1,15 @@
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 
-import './main.html';
+// import { Tasks } from '../imports/api/tasks.js';
+import { Songs } from '../imports/api/songs.js';
+import '../imports/ui/body.js';
 
-Playlists = new Mongo.Collection('playlists');
+//import './main.html';
+
 
 Template.body.helpers({
-  songs: function() {
-    return Playlists.find()
+  songs() {
+    return Songs.find({}, { sort: {createdAt: -1 }})
   }
-});
+})
